@@ -1,0 +1,76 @@
+---
+const pillars = [
+  {
+    tag: "Fullstack Development",
+    title: "End to end<br />product builds",
+    body: "From database schema to deployed frontend — I ship complete products, not fragments. Comfortable owning the full stack under real constraints and deadlines.",
+  },
+  {
+    tag: "Agentic AI",
+    title: "Systems that<br />take action",
+    body: "I design and build autonomous agent workflows — tool-using, multi-step systems that plan, execute, and self-correct instead of waiting on a single prompt.",
+  },
+  {
+    tag: "LLM Engineering",
+    title: "Applied<br />language models",
+    body: "Prompt architecture, retrieval pipelines, fine-tuning, and production LLM infrastructure — turning language models into reliable software components.",
+  },
+];
+---
+<section class="pillars" id="pillars">
+  <p class="mono eyebrow" data-reveal>What I Do</p>
+  <div class="pillar-grid">
+    {pillars.map((p, i) => (
+      <div class="pillar-item" data-reveal data-reveal-delay={Math.min(i, 3)}>
+        <span class="tag mono">{p.tag}</span>
+        <h3 class="display" set:html={p.title} />
+        <p>{p.body}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .pillars {
+    padding: 16vh 0;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    margin-bottom: 40px;
+  }
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .pillar-item {
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+  }
+  .tag {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 6px 14px;
+    border: 1px solid var(--emerald-dim);
+    border-radius: 100px;
+    color: var(--emerald);
+  }
+  .pillar-item h3 {
+    font-size: clamp(26px, 3.2vw, 38px);
+    line-height: 0.98;
+    margin-bottom: 16px;
+  }
+  .pillar-item p {
+    font-size: 15px;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 860px) {
+    .pillar-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

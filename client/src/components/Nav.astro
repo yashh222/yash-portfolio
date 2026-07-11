@@ -1,0 +1,46 @@
+---
+---
+<nav class="nav">
+  <a href="/" class="mark">YB</a>
+  <div class="status">
+    <span class="dot"></span>
+    <span class="mono" style="color: var(--cream-dim)">Open to work</span>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 26px clamp(20px, 5vw, 64px);
+    mix-blend-mode: difference;
+  }
+  .mark {
+    font-family: "Anton", sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--emerald);
+    box-shadow: 0 0 8px var(--emerald);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+</style>

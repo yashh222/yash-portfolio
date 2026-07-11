@@ -1,0 +1,184 @@
+---
+---
+<section class="finale" id="contact">
+  <p class="mono eyebrow" data-reveal>Final Year · Open to Roles &amp; Freelance</p>
+  <h2 class="display" data-reveal>Let's Connect</h2>
+  <p class="finale-sub" data-reveal>
+    Whether you're hiring for a full-time role, internship, or freelance project, I'd love to hear about it.
+  </p>
+  
+ 
+
+  <form id="contact-form" class="contact-form" data-reveal>
+    <div class="row">
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Your email" required />
+    </div>
+    <textarea name="message" placeholder="What are you building?" rows="4" required></textarea>
+    <button type="submit" class="btn btn-primary">Send message</button>
+    <p class="form-status" id="form-status" role="status"></p>
+  </form>
+
+  <div class="resume-block" data-reveal>
+    <span class="mono" style="color: var(--cream-dim)">Or, skip straight to</span>
+    <button id="resume-btn" class="btn btn-secondary">Download Resume</button>
+  </div>
+</section>
+
+<style>
+  .finale {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 12vh;
+    padding-bottom: 12vh;
+  }
+  .eyebrow { margin-bottom: 20px; }
+  .finale h2 {
+    font-size: clamp(48px, 11vw, 140px);
+    color: var(--cream);
+  }
+  .finale-sub {
+    margin-top: 20px;
+    color: var(--cream-dim);
+    max-width: 520px;
+    font-size: clamp(14px, 1.5vw, 18px);
+  }
+
+  .contact-form {
+    margin-top: 44px;
+    width: 100%;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .row {
+    display: flex;
+    gap: 14px;
+  }
+  input,
+  textarea {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--cream);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    resize: vertical;
+  }
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--emerald-dim);
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--cream-dim);
+  }
+
+  .btn {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 16px 30px;
+    border-radius: 100px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--emerald);
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .btn-primary:hover { background: var(--cream); transform: translateY(-2px); }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .btn-secondary {
+    border: 1px solid var(--line);
+    color: var(--cream);
+    background: transparent;
+  }
+  .btn-secondary:hover { border-color: var(--emerald); color: var(--emerald); }
+
+  .form-status {
+    min-height: 20px;
+    font-size: 13px;
+    color: var(--emerald);
+  }
+
+  .resume-block {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (max-width: 560px) {
+    .row { flex-direction: column; }
+  }
+</style>
+
+<script>
+  const API_URL = import.meta.env.PUBLIC_API_URL || "http://localhost:4000";
+
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector("button");
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    btn.disabled = true;
+    if (status) status.textContent = "Sending...";
+
+    try {
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(payload.error || "Request failed");
+      }
+
+      if (status) status.textContent = "message sent thank you";
+      form.reset();
+    } catch (error) {
+      if (status) {
+        status.textContent = error instanceof Error ? error.message : "Something went wrong. Try again, or email directly.";
+      }
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  const resumeBtn = document.getElementById("resume-btn");
+  resumeBtn?.addEventListener("click", async () => {
+    const email = window.prompt("Enter your email to download the resume:");
+    if (!email) return;
+    try {
+      const res = await fetch(`${API_URL}/api/resume`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      const { url } = await res.json();
+      window.location.href = url;
+    } catch {
+      alert("Couldn't start the download — please try again in a moment.");
+    }
+  });
+</script>
