@@ -1,7 +1,8 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  output: 'static',
-  site: 'https://yashbarhate.dev', // change to your real domain when you deploy
-  compressHTML: true,
-});
+  site: "https://www.yashbarhate.me",
+  integrations: [
+    sitemap()
+  ]});
