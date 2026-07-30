@@ -1,0 +1,150 @@
+.finale {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 12vh;
+  padding-bottom: 12vh;
+}
+.eyebrow {
+  margin-bottom: 20px;
+}
+.finale h2 {
+  font-size: clamp(48px, 11vw, 140px);
+  color: var(--cream);
+}
+.finale-sub {
+  margin-top: 20px;
+  color: var(--cream-dim);
+  max-width: 520px;
+  font-size: clamp(14px, 1.5vw, 18px);
+}
+.contact-stage {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin-top: 44px;
+  min-height: 300px;
+}
+.contact-panel {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.form-panel {
+  opacity: 1;
+  transform: translateY(0);
+}
+.loading-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+}
+.contact-stage.is-submitting .form-panel {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+.contact-stage.is-submitting .loading-panel {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.row {
+  display: flex;
+  gap: 14px;
+}
+input,
+textarea {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--cream);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  resize: vertical;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--emerald-dim);
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--cream-dim);
+}
+.btn {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 16px 30px;
+  border-radius: 100px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--emerald);
+  color: var(--ink);
+  font-weight: 600;
+}
+.btn-primary:hover {
+  background: var(--cream);
+  transform: translateY(-2px);
+}
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-secondary {
+  border: 1px solid var(--line);
+  color: var(--cream);
+  background: transparent;
+}
+.btn-secondary:hover {
+  border-color: var(--emerald);
+  color: var(--emerald);
+}
+.form-status {
+  min-height: 24px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--emerald);
+}
+.loading-copy {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+}
+.resume-block {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+@media (max-width: 560px) {
+  .row {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import photo from "../../assets/yash.jpg";
+import "./styles.css";
+---
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="mono eyebrow" data-reveal>Fullstack · Agentic AI · LLMs</p>
+      <h1 class="display headline" data-reveal data-reveal-delay="1">
+        Yash Barhate<br />
+      </h1>
+      <p class="lede" data-reveal data-reveal-delay="2">
+        I'm Yash Barhate — a fullstack developer working across agentic AI,
+        LLMs, and programmer-first tooling. Final-year, building products in
+        the meantime, and open to roles &amp; freelance work.
+      </p>
+      <div class="hero-actions" data-reveal data-reveal-delay="2">
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
+        <a class="btn btn-secondary" href="#work">See the work</a>
+      </div>
+    </div>
+
+    <div class="hero-photo" data-reveal data-reveal-delay="1">
+      <Image
+        src={photo}
+        alt="Yash Barhate"
+        width={520}
+        height={540}
+        loading="eager"
+        fetchpriority="high"
+        class="photo"
+      />
+      <span class="photo-ring"></span>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span class="mono" style="color: var(--cream-dim)">Scroll</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+
+<script>
+  import Typed from "typed.js";
+
+  const typewriter = document.querySelector("[data-typewriter]");
+
+  if (typewriter) {
+    new Typed(typewriter, {
+      strings: ["Web Developer", "UI/UX Designer", "Full Stack Developer", "Creative Developer"],
+      typeSpeed: 90,
+      backSpeed: 60,
+      backDelay: 1500,
+      loop: true,
+      smartBackspace: true,
+      showCursor: true,
+      cursorChar: "|",
+      contentType: "text"
+    });
+  }
+</script>

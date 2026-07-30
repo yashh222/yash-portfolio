@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav";
+import { posts } from "../../data/content.js";
+
+export function getStaticPaths() {
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const canonicalUrl = `${import.meta.env.SITE || "https://www.yashbarhate.me"}/blog/${post.slug}`;
+const title = `${post.title} — Yash Barhate`;
+const description = post.description;
+const imageUrl = post.image;
+---
+<Layout title={title} description={description} image={imageUrl} canonicalUrl={canonicalUrl} type="article">
+  <div class="reading-progress" aria-hidden="true"></div>
+  <Nav />
+  <main class="post-page">
+    <section class="post-hero" data-reveal>
+      <p class="mono eyebrow">Blog Post</p>
+      <h1 class="display">{post.title}</h1>
+      <p class="post-meta">{post.date} · {post.tags.join(" · ")}</p>
+      <p class="lead">{post.excerpt}</p>
+    </section>
+
+    <section class="post-body" data-reveal>
+      <img src={post.image} alt={post.title} />
+      <p>{post.content}</p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    z-index: 80;
+    background: linear-gradient(90deg, var(--emerald), var(--cream));
+    transition: width 0.18s ease-out;
+  }
+  .post-page {
+    padding: 124px clamp(20px, 5vw, 64px) 120px;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .post-hero h1 {
+    font-size: clamp(34px, 5vw, 58px);
+    margin: 14px 0 10px;
+  }
+  .post-meta {
+    color: var(--emerald-dim);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  .lead {
+    margin-top: 18px;
+    color: var(--cream-dim);
+    font-size: clamp(16px, 1.4vw, 20px);
+    line-height: 1.7;
+  }
+  .post-body {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .post-body img {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    height: 320px;
+    object-fit: cover;
+  }
+  .post-body p {
+    color: var(--cream-dim);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+</style>
+
+<script>
+  const progressBar = document.querySelector('.reading-progress');
+  if (progressBar) {
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const percent = scrollHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100)) : 0;
+      (progressBar as HTMLElement).style.width = `${percent}%`;
+    };
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+  }
+</script>

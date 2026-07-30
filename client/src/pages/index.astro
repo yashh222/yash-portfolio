@@ -1,21 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Nav from "../components/Nav.astro";
-import Hero from "../components/Hero.astro";
-import Pillars from "../components/Pillars.astro";
-import Work from "../components/Work.astro";
-import Contact from "../components/Contact.astro";
-import Footer from "../components/Footer.astro";
-import ThreeDObject from "../components/ThreeDObject.astro";
+import Nav from "../components/Nav/index.astro";
+import Hero from "../components/Hero/index.astro";
+import Pillars from "../components/Pillars/index.astro";
+import Work from "../components/Work/index.astro";
+import Contact from "../components/Contact/index.astro";
+import Footer from "../components/Footer/index.astro";
+import Skills from "../components/Skills/index.astro";
 ---
 <Layout>
-  <div class="vignette"></div>
-  <div class="grain"></div>
-  <ThreeDObject />
+  <div class="vignette"></div>  <div class="grain"></div>
   <Nav />
   <main>
     <Hero />
     <Pillars />
+    <Skills />
     <Work />
     <Contact />
   </main>

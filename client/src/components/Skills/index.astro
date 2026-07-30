@@ -1,0 +1,44 @@
+---
+import "./styles.css";
+
+const skillGroups = [
+  {
+    name: "Frontend",
+    items: ["Astro", "React", "TypeScript", "Tailwind", "HTML/CSS"],
+  },
+  {
+    name: "Backend",
+    items: ["Node.js", "Express", "FastAPI", "REST APIs", "WebSockets"],
+  },
+  {
+    name: "AI",
+    items: ["LangGraph", "RAG", "LLM Ops", "Prompt Design", "Agent Workflows"],
+  },
+  {
+    name: "Cloud",
+    items: ["Vercel", "AWS", "Docker", "CI/CD", "Serverless"],
+  },
+  {
+    name: "Databases",
+    items: ["PostgreSQL", "Supabase", "Redis", "Vector DB", "Schema Design"],
+  },
+  {
+    name: "Tools",
+    items: ["Git", "Figma", "Postman", "Cursor", "Notion"],
+  },
+];
+---
+<section class="skills" id="skills" data-reveal>
+  <p class="mono eyebrow">Skill Map</p>
+  <h2 class="display">Stack I use to ship</h2>
+  <div class="skill-grid">
+    {skillGroups.map((group) => (
+      <div class="skill-card">
+        <h3>{group.name}</h3>
+        <ul>
+          {group.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

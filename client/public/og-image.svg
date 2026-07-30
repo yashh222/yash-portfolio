@@ -1,0 +1,16 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" rx="32" fill="#060807"/>
+  <rect x="40" y="40" width="1120" height="550" rx="24" stroke="#14E8A0" stroke-opacity="0.35" stroke-width="2"/>
+  <path d="M174 437H340" stroke="#14E8A0" stroke-width="10" stroke-linecap="round"/>
+  <path d="M174 401V276" stroke="#14E8A0" stroke-width="10" stroke-linecap="round"/>
+  <path d="M340 401V276" stroke="#14E8A0" stroke-width="10" stroke-linecap="round"/>
+  <path d="M212 401L212 317" stroke="#F2EDE1" stroke-opacity="0.75" stroke-width="8" stroke-linecap="round"/>
+  <rect x="480" y="170" width="520" height="290" rx="20" fill="#0D1A17" stroke="#F2EDE1" stroke-opacity="0.18"/>
+  <path d="M560 380L686 254L772 332L930 202" stroke="#14E8A0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="560" cy="380" r="12" fill="#14E8A0"/>
+  <circle cx="686" cy="254" r="12" fill="#14E8A0"/>
+  <circle cx="772" cy="332" r="12" fill="#14E8A0"/>
+  <circle cx="930" cy="202" r="12" fill="#14E8A0"/>
+  <text x="174" y="212" fill="#F2EDE1" font-family="'Space Grotesk', sans-serif" font-size="54" font-weight="700">Yash Barhate</text>
+  <text x="174" y="270" fill="#B9B6A9" font-family="'JetBrains Mono', monospace" font-size="24">Fullstack · Agentic AI · LLMs</text>
+</svg>

@@ -1,0 +1,38 @@
+---
+import "./styles.css";
+---
+<section class="finale" id="contact">
+  <p class="mono eyebrow" data-reveal>Final Year · Open to Roles &amp; Freelance</p>
+  <h2 class="display" data-reveal>Let's Connect</h2>
+  <p class="finale-sub" data-reveal>
+    Whether you're hiring for a full-time role, internship, or freelance project, I'd love to hear about it.
+  </p>
+
+  <div class="contact-stage" id="contact-stage" data-reveal>
+    <div class="contact-panel form-panel" id="form-panel">
+      <form id="contact-form" class="contact-form">
+        <div class="row">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+        </div>
+        <textarea name="message" placeholder="What are you building?" rows="4" required></textarea>
+        <button type="submit" class="btn btn-primary">Send message</button>
+      </form>
+    </div>
+
+    <div class="contact-panel loading-panel" id="loading-panel" aria-hidden="true">
+      <dotlottie-wc src="https://lottie.host/f4d1f8a5-26ac-4666-a8d9-3797b77d011b/ZFU7WL37VN.lottie" style="width: 220px;height: 220px" autoplay loop></dotlottie-wc>
+      <p class="loading-copy">Sending your message…</p>
+    </div>
+  </div>
+
+  <p class="form-status" id="form-status" role="status"></p>
+
+  <div class="resume-block" data-reveal>
+    <span class="mono" style="color: var(--cream-dim)">Or, skip straight to</span>
+    <button id="resume-btn" class="btn btn-secondary">Download Resume</button>
+  </div>
+</section>
+
+<script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js"></script>
+<script src="./script.js"></script>

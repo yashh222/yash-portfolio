@@ -2,11 +2,30 @@
 export interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  canonicalUrl?: string;
+  type?: string;
 }
 const {
   title = "Yash Barhate — Fullstack Developer, Agentic AI & LLM Engineer",
   description = "Yash Barhate — fullstack developer building agentic AI and LLM-powered products.",
+  image = "https://www.yashbarhate.me/og-image.svg",
+  canonicalUrl = "https://www.yashbarhate.me",
+  type = "website",
 } = Astro.props;
+const canonical = canonicalUrl;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": type === "article" ? "Article" : "WebSite",
+  "headline": title,
+  "description": description,
+  "image": image,
+  "url": canonical,
+  "author": {
+    "@type": "Person",
+    "name": "Yash Barhate",
+  },
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +34,17 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content={type} />
+  <meta property="og:image" content={image} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={image} />
+  <link rel="canonical" href={canonical} />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
