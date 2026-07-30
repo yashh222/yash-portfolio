@@ -18,14 +18,20 @@ router.post("/", async (req, res) => {
 
     return res.status(200).json({
       success: true,
-      message: "Saved successfully",
+      message: "Message sent successfully",
     });
   } catch (err) {
     console.error(err);
 
-    return res.status(500).json({
+    const message = err instanceof z.ZodError
+      ? "Please provide a valid name, email, and message."
+      : err instanceof Error
+        ? err.message
+        : "Unable to send your message right now.";
+
+    return res.status(err instanceof z.ZodError ? 400 : 500).json({
       success: false,
-      error: err.message,
+      error: message,
     });
   }
 });
