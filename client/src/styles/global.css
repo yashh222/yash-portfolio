@@ -1,5 +1,6 @@
 :root {
-  --ink: #060807;
+  --ink: #080a09;
+  --ink-deep: #040504;
   --emerald: #14e8a0;
   --emerald-dim: #0b8f63;
   --emerald-glow: rgba(20, 232, 160, 0.35);
@@ -15,16 +16,17 @@
 }
 
 html {
-  background: var(--ink);
+  background-color: var(--ink);
   scroll-behavior: smooth;
 }
 
-html, body {
+html,
+body {
   min-height: 100%;
 }
 
 body {
-  background: var(--ink);
+  background-color: var(--ink);
   color: var(--cream);
   font-family: "Space Grotesk", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -70,13 +72,56 @@ img {
   color: var(--emerald);
 }
 
+/* Subtle tech dot-grid pattern */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  opacity: 0.5;
+}
+
+/* Floating dust particle canvas */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* Interactive cursor spotlight glow */
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 30%), rgba(20, 232, 160, 0.045), transparent 80%);
+}
+
+/* Toned down subtle ambient glow */
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: 
+    radial-gradient(550px circle at 80% 20%, rgba(20, 232, 160, 0.035), transparent 80%),
+    radial-gradient(650px circle at 15% 55%, rgba(99, 102, 241, 0.025), transparent 80%);
+}
+
 /* cheap, static film-grain texture — no JS, no canvas */
 .grain {
   position: fixed;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  opacity: 0.045;
+  opacity: 0.035;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
@@ -86,7 +131,7 @@ img {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.5) 100%);
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 main {
@@ -106,15 +151,26 @@ section {
   transform: translateY(24px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
 }
-[data-reveal-delay="1"] { transition-delay: 0.08s; }
-[data-reveal-delay="2"] { transition-delay: 0.16s; }
-[data-reveal-delay="3"] { transition-delay: 0.24s; }
+
+[data-reveal-delay="1"] {
+  transition-delay: 0.08s;
+}
+
+[data-reveal-delay="2"] {
+  transition-delay: 0.16s;
+}
+
+[data-reveal-delay="3"] {
+  transition-delay: 0.24s;
+}
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -122,6 +178,7 @@ section {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
   [data-reveal] {
     opacity: 1;
     transform: none;
@@ -138,10 +195,12 @@ section {
   body {
     padding-bottom: 0;
   }
+
   .grain,
   .vignette {
     display: none;
   }
+
   main {
     padding-bottom: 24px;
   }
@@ -149,10 +208,30 @@ section {
 
 /* Improve legibility and spacing on small handheld devices */
 @media (max-width: 480px) {
-  html { font-size: 112%; }
-  body { padding-left: 12px; padding-right: 12px; }
-  section { padding-left: 12px; padding-right: 12px; }
-  .display { font-size: clamp(28px, 10vw, 48px); }
-  .lede { font-size: 17px; }
-  .btn { font-size: 14px; padding: 12px 18px; }
+  html {
+    font-size: 112%;
+  }
+
+  body {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .display {
+    font-size: clamp(28px, 10vw, 48px);
+  }
+
+  .lede {
+    font-size: 17px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 12px 18px;
+  }
 }

@@ -7,105 +7,54 @@ import "./styles.css";
 <section class="work" id="work">
   <div class="work-header">
     <p class="mono eyebrow" data-reveal>Selected Work</p>
-
     <h2 class="display" data-reveal>
       Things I've<br />shipped
     </h2>
-
     <p class="work-description" data-reveal>
-      Your skills and achievements showcase your strengths and abilities.
-      Speak about any new skills or software you learnt to perform the
-      project responsibilities.
+      A collection of agentic AI platforms, fullstack web products, and developer tooling built with production engineering standards.
     </p>
 
     <div class="work-filters" role="tablist" aria-label="Filter projects">
-      <button
-        type="button"
-        class="work-filter active"
-        data-filter="ALL"
-        aria-selected="true"
-      >
-        All
-      </button>
-
-      <button
-        type="button"
-        class="work-filter"
-        data-filter="STATIC"
-        aria-selected="false"
-      >
-        Static
-      </button>
-
-      <button
-        type="button"
-        class="work-filter"
-        data-filter="RESPONSIVE"
-        aria-selected="false"
-      >
-        Responsive
-      </button>
-
-      <button
-        type="button"
-        class="work-filter"
-        data-filter="DYNAMIC"
-        aria-selected="false"
-      >
-        Dynamic
-      </button>
+      <button type="button" class="work-filter active" data-filter="ALL" aria-selected="true">All</button>
+      <button type="button" class="work-filter" data-filter="DYNAMIC" aria-selected="false">Agentic AI</button>
+      <button type="button" class="work-filter" data-filter="RESPONSIVE" aria-selected="false">Fullstack & Tools</button>
     </div>
   </div>
 
-  <div class="work-grid">
-    {
-      projects.map((p, i) => (
-        <article
-          class="work-card"
-          data-category={p.category}
-          data-reveal
-          data-reveal-delay={Math.min(i, 3)}
-        >
-          <div class="wc-left">
-            <div class="wc-title">{p.title}</div>
-
-            <div class="wc-pitch">{p.pitch}</div>
-
-            <div class="wc-stack">
-              {p.stack.join(" · ")}
-            </div>
+  <div class="work-list">
+    {projects.map((p, i) => (
+      <article
+        class="work-card"
+        data-category={p.category}
+        data-reveal
+        data-reveal-delay={Math.min(i, 3)}
+      >
+        <!-- LEFT: Identity -->
+        <div class="wc-identity">
+          <span class="project-index mono">0{i + 1}</span>
+          <h3 class="project-title">{p.title}</h3>
+          <p class="project-desc">{p.pitch}</p>
+          <div class="project-stack">
+            {p.stack.map((tech) => (
+              <span class="tech-pill">{tech}</span>
+            ))}
           </div>
+        </div>
 
-          <div class="wc-meta">
-            <a href={`/projects/${p.slug}`} class="card-link">
-              View case study
+        <!-- RIGHT: Proof -->
+        <div class="wc-proof">
+          <div class="proof-header">
+            <span class="proof-highlight">{p.outcome}</span>
+            <a href={`/projects/${p.slug}`} class="case-study-link">
+              View Case Study <span class="arrow">↗</span>
             </a>
-
-            <div class="wc-arrow">↗</div>
           </div>
-
-          <div class="card-details">
-            <p>
-              <strong>Architecture:</strong> {p.architecture}
-            </p>
-
-            <p>
-              <strong>Challenges:</strong> {p.challenges.join(" ")}
-            </p>
-
-            <div class="gallery-preview">
-              {p.gallery.slice(0, 2).map((image) => (
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  loading="lazy"
-                />
-              ))}
-            </div>
+          <div class="proof-preview">
+            <img src={p.gallery[0].src} alt={p.gallery[0].alt} loading="lazy" />
           </div>
-        </article>
-      ))
-    }
+        </div>
+      </article>
+    ))}
   </div>
 </section>
 

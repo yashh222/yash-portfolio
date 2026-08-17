@@ -1,79 +1,141 @@
 export const projects = [
   {
-    slug: "aurora",
-    title: "Project Aurora",
+    slug: "agentflow-ai",
+    title: "Agentflow AI — Visual AI Workflow Engine",
+    category: "DYNAMIC",
     pitch:
-      "An agentic research assistant that plans multi-step tasks, gathers context, and executes workflows with minimal supervision.",
-    stack: ["Next.js", "Python", "LangGraph", "OpenAI"],
-    liveDemo: "https://example.com/aurora",
-    github: "https://github.com/example/aurora",
-    architecture:
-      "A frontend workspace orchestrates tasks, a planning agent decomposes goals, and tool adapters execute web/API actions while a memory layer tracks progress.",
-    challenges: [
-      "Managed long-running task states across retries and partial failures.",
-      "Balanced autonomy with user trust by surfacing agent reasoning in a readable workflow panel.",
+      "A fullstack visual AI workflow automation platform executed via a 5-agent orchestration engine for DAG planning, LLM execution, grounded validation, and fault recovery.",
+    stack: [
+      "Next.js",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Socket.IO",
+      "OpenRouter",
+      "Gemini",
     ],
-    technologies: ["Next.js", "TypeScript", "Python", "LangGraph", "PostgreSQL"],
+    outcome:
+      "⚡ Real-time execution monitoring with sub-10ms UI updates & 5-agent fallback recovery",
+    liveDemo: "https://agentflow.dev",
+    github: "https://github.com/yash/agentflow-ai",
+    architecture:
+      "Next.js/React provides the visual workflow builder and execution dashboard. Express/Node.js exposes REST & webhook APIs running a 5-agent pipeline: Planner resolves DAG dependencies using Kahn's algorithm, Execution runs LLM nodes, Validation enforces grounded outputs, Recovery handles retries, and Monitoring streams Socket.IO telemetry.",
+    challenges: [
+      "Designed a 5-agent execution pipeline with clear separation of concerns across planning, execution, validation, recovery, and monitoring.",
+      "Prevented LLM hallucinations from empty or metadata-only webhook payloads using payload preprocessing and grounded validation rules.",
+      "Implemented asynchronous webhook acknowledgement with 202 Accepted so long-running AI workflows could execute without blocking external webhook providers."
+    ],
+    technologies: [
+      "Next.js",
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "Socket.IO",
+      "OpenRouter",
+      "Gemini",
+      "Nodemailer",
+      "Kahn's Algorithm",
+      "WebSockets"
+    ],
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80",
-        alt: "Dashboard view of Project Aurora",
+        src: "https://res.cloudinary.com/dmm9zrqfs/image/upload/v1786996603/Screenshot_2026-08-18_011854_w5erkc.png",
+        alt: "Agentflow AI Visual Workflow Canvas",
       },
       {
-        src: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
-        alt: "Workflow board for Project Aurora",
+        src: "https://res.cloudinary.com/dmm9zrqfs/image/upload/v1786996604/Screenshot_2026-08-18_012016_y8njxu.png",
+        alt: "Agentflow Execution Flow Details",
+      },
+      {
+        src: "https://res.cloudinary.com/dmm9zrqfs/image/upload/v1786996603/Screenshot_2026-08-18_012101_vtyxl7.png",
+        alt: "Agentflow Real-Time Monitoring Panel",
       },
     ],
   },
   {
-    slug: "nimbus",
-    title: "Project Nimbus",
-    pitch:
-      "A collaborative product workspace for SaaS teams, with shared docs, live updates, and streamlined delivery workflows.",
-    stack: ["React", "Node.js", "PostgreSQL", "Socket.IO"],
-    liveDemo: "https://example.com/nimbus",
-    github: "https://github.com/example/nimbus",
+    slug: "tripset-ai",
+    title: "Tripset AI Travel Platform",
+    category: "DYNAMIC",
+    pitch: "An agentic travel platform that plans multi-step itineraries, queries live inventory, and isolates session states with MongoDB persistence.",
+    stack: ["React", "Python", "LangGraph", "FastAPI", "MongoDB", "Express"],
+    outcome: "⚡ 45% latency reduction via thread session isolation & agent state caching",
+    liveDemo: "https://tripset.ai",
+    github: "https://github.com/yash/tripset-ai",
     architecture:
-      "A React client talks to Node services through REST and WebSocket channels, with PostgreSQL powering persistence and event-driven sync.",
+      "React client interfaces with Express & FastAPI services. LangGraph agents orchestrate multi-step planning loops backed by MongoDB thread isolation.",
     challenges: [
-      "Serialized real-time collaboration without introducing race conditions or UI churn.",
-      "Optimized permission checks so teams could work safely in shared spaces.",
+      "Isolated session state context across independent agent threads to prevent prompt leakage.",
+      "Implemented MongoDB thread persistence so multi-step travel plans survive browser refreshes.",
     ],
-    technologies: ["React", "Node.js", "PostgreSQL", "Socket.IO", "Redis"],
+    technologies: ["React", "Python", "LangGraph", "FastAPI", "MongoDB", "Express.js"],
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80",
-        alt: "Workspace dashboard for Project Nimbus",
+        src: "https://res.cloudinary.com/dmm9zrqfs/image/upload/v1786996613/Screenshot_2026-08-18_012228_guozot.png",
+        alt: "Tripset AI Planner Dashboard",
       },
       {
-        src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80",
-        alt: "Collaboration view for Project Nimbus",
+        src: "https://res.cloudinary.com/dmm9zrqfs/image/upload/v1786996610/Screenshot_2026-08-18_012247_kxhu4s.png",
+        alt: "Tripset AI Search & Hotel Selection",
+      },
+      {
+        src: "https://res.cloudinary.com/dmm9zrqfs/image/upload/v1786996608/Screenshot_2026-08-18_012308_jyp8fn.png",
+        alt: "Tripset AI Itinerary Summary",
       },
     ],
   },
   {
-    slug: "vertex",
-    title: "Project Vertex",
-    pitch:
-      "A retrieval-augmented knowledge layer that turns messy documents into an instant queryable system for teams.",
-    stack: ["FastAPI", "Vector DB", "OpenAI", "Pinecone"],
-    liveDemo: "https://example.com/vertex",
-    github: "https://github.com/example/vertex",
+    slug: "webgenix",
+    title: "WebGenix AI Site Builder",
+    category: "DYNAMIC",
+    pitch: "Prompt-driven web application builder that generates fullstack component architectures with live rendering and instant sandbox previews.",
+    stack: ["TypeScript", "React", "Node.js", "Claude API", "Docker", "Vite"],
+    outcome: "🚀 Generates production-ready component codebases in < 5 seconds",
+    liveDemo: "https://webgenix.dev",
+    github: "https://github.com/yash/webgenix",
     architecture:
-      "Document ingestion pipelines normalize content, embeddings are stored in a vector database, and an LLM layer generates grounded responses.",
+      "A React workspace client streams code generations from Node.js background processes, deploying temporary containerized previews via Docker.",
     challenges: [
-      "Improved retrieval quality by adding chunking, metadata filters, and reranking loops.",
-      "Reduced hallucinations by attaching source references to every answer.",
+      "Built non-blocking streaming code generation pipeline using WebSockets and server-sent events.",
+      "Isolated execution environments in containerized sandboxes for immediate live previews.",
     ],
-    technologies: ["FastAPI", "Python", "OpenAI", "Pinecone", "Docker"],
+    technologies: ["TypeScript", "React", "Node.js", "Claude API", "Docker", "Vite"],
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
-        alt: "Knowledge base interface for Project Vertex",
+        src: "https://res.cloudinary.com/dmm9zrqfs/image/upload/v1786996605/Screenshot_2026-08-18_012513_myvjs7.png",
+        alt: "WebGenix AI Web Generator Interface",
       },
       {
-        src: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=80",
-        alt: "Search and retrieval workflow for Project Vertex",
+        src: "https://res.cloudinary.com/dmm9zrqfs/image/upload/v1786996605/Screenshot_2026-08-18_012531_pytdxz.png",
+        alt: "WebGenix Live Sandbox Preview",
+      },
+      {
+        src: "https://res.cloudinary.com/dmm9zrqfs/image/upload/v1786996611/Screenshot_2026-08-18_012553_z1mjpj.png",
+        alt: "WebGenix Code Generation View",
+      },
+    ],
+  },
+  {
+    slug: "mcp-path-generator",
+    title: "MCP Learning Path Engine",
+    category: "RESPONSIVE",
+    pitch: "Model Context Protocol engine that analyzes developer skill graphs, parses repository dependencies, and builds targeted learning paths.",
+    stack: ["Python", "LangChain", "MCP Protocol", "FastAPI", "ChromaDB"],
+    outcome: "🎯 Parsed 100+ skill graphs into deterministic learning nodes",
+    liveDemo: "https://mcp-path.dev",
+    github: "https://github.com/yash/mcp-path-generator",
+    architecture:
+      "MCP protocol handlers ingest skill repositories, extract dependency graphs, and store vector embeddings in ChromaDB for context-aware path generation.",
+    challenges: [
+      "Standardized MCP protocol context schemas across diverse developer skill trees.",
+      "Optimized vector search reranking to generate deterministic step-by-step learning sequences.",
+    ],
+    technologies: ["Python", "LangChain", "MCP Protocol", "FastAPI", "ChromaDB"],
+    gallery: [
+      {
+        src: "https://res.cloudinary.com/dmm9zrqfs/image/upload/v1786996856/Screenshot_2026-08-18_013019_gmswmg.png",
+        alt: "MCP Path Engine Workspace",
       },
     ],
   },

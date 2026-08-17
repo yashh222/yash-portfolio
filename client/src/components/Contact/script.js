@@ -57,33 +57,3 @@ form?.addEventListener("submit", async (e) => {
     finishSubmission(error instanceof Error ? error.message : "Something went wrong. Please try again or email directly.");
   }
 });
-
-const resumeBtn = document.getElementById("resume-btn");
-resumeBtn?.addEventListener("click", async () => {
-  const email = window.prompt("Enter your email to download the resume:");
-  if (!email) return;
-  try {
-    const res = await fetch(`${API_URL}/api/resume`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
-
-    const payload = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      throw new Error(payload.error || "Unable to fetch resume.");
-    }
-
-    const blob = await res.blob();
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "Yash_Barhate_Resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.URL.revokeObjectURL(url);
-  } catch (error) {
-    window.alert(error instanceof Error ? error.message : "Unable to download resume right now.");
-  }
-});

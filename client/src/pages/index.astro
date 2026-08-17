@@ -9,7 +9,12 @@ import Footer from "../components/Footer/index.astro";
 import Skills from "../components/Skills/index.astro";
 ---
 <Layout>
-  <div class="vignette"></div>  <div class="grain"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+  <div class="cursor-glow" id="cursor-glow"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="vignette"></div>
+  <div class="grain"></div>
   <Nav />
   <main>
     <Hero />
@@ -20,3 +25,66 @@ import Skills from "../components/Skills/index.astro";
   </main>
   <Footer />
 </Layout>
+
+<script>
+  // Mouse spotlight tracking
+  const cursorGlow = document.getElementById("cursor-glow");
+  if (cursorGlow) {
+    window.addEventListener("pointermove", (e) => {
+      cursorGlow.style.setProperty("--mouse-x", `${e.clientX}px`);
+      cursorGlow.style.setProperty("--mouse-y", `${e.clientY}px`);
+    }, { passive: true });
+  }
+
+  // Floating dust particle canvas effect
+  const canvas = document.getElementById("bg-canvas") as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      let width = (canvas.width = window.innerWidth);
+      let height = (canvas.height = window.innerHeight);
+
+      window.addEventListener("resize", () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const count = Math.min(Math.floor(width / 30), 40);
+      const particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        radius: Math.random() * 1.2 + 0.5,
+        alpha: Math.random() * 0.3 + 0.08,
+      }));
+
+      function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(20, 232, 160, ${p.alpha})`;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        animate();
+      }
+    }
+  }
+</script>

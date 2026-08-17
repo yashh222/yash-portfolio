@@ -1,8 +1,8 @@
 
 .work {
   padding-top: 8vh;
-  padding-bottom: 16vh;
-  max-width: 1280px;
+  padding-bottom: 14vh;
+  max-width: 1240px;
   margin: 0 auto;
 }
 
@@ -11,8 +11,8 @@
 }
 
 .work h2 {
-  font-size: clamp(38px, 7vw, 88px);
-  margin-bottom: 24px;
+  font-size: clamp(38px, 6vw, 76px);
+  margin-bottom: 20px;
   max-width: 900px;
 }
 
@@ -21,14 +21,14 @@
   color: var(--cream-dim);
   font-size: clamp(14px, 1.3vw, 17px);
   line-height: 1.7;
-  margin-bottom: 42px;
+  margin-bottom: 36px;
 }
 
 .work-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 
 .work-filter {
@@ -36,16 +36,14 @@
   border: 1px solid var(--line);
   background: transparent;
   color: var(--cream-dim);
-  padding: 11px 18px;
+  padding: 9px 18px;
+  border-radius: 999px;
   font-family: "JetBrains Mono", monospace;
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .work-filter:hover {
@@ -54,161 +52,163 @@
 }
 
 .work-filter.active {
-  background: var(--emerald);
-  color: var(--bg);
+  background: rgba(20, 232, 160, 0.12);
+  color: var(--emerald);
   border-color: var(--emerald);
 }
 
-.work-grid {
+.work-list {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 32px;
 }
 
 .work-card {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
-  padding: 36px 8px;
-  border-top: 1px solid var(--line);
-  overflow: hidden;
-  transition:
-    padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.work-grid .work-card:last-child {
-  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 32px;
+  padding: 36px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .work-card:hover {
-  padding-left: 24px;
-  transform: translateY(-2px);
-  border-color: rgba(20, 232, 160, 0.4);
+  transform: translateY(-4px);
+  border-color: rgba(20, 232, 160, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
 }
 
-.work-card:hover .wc-title {
-  color: var(--emerald);
-}
-
-.work-card:hover .wc-arrow {
-  transform: translate(6px, -6px);
-  opacity: 1;
-}
-
-.wc-left {
+/* LEFT: Identity */
+.wc-identity {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-width: 70%;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.wc-title {
-  font-family: "Anton", sans-serif;
-  text-transform: uppercase;
-  font-size: clamp(22px, 3.2vw, 38px);
-  transition: color 0.3s ease;
-}
-
-.wc-pitch {
-  color: var(--cream-dim);
-  font-size: clamp(13px, 1.2vw, 16px);
-  max-width: 520px;
-}
-
-.wc-stack {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
+.project-index {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--emerald);
   letter-spacing: 0.1em;
-  color: var(--emerald-dim);
-  text-transform: uppercase;
+  opacity: 0.85;
 }
 
-.wc-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
+.project-title {
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.2;
 }
 
-.card-link {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--emerald);
-}
-
-.wc-arrow {
-  font-size: clamp(22px, 3vw, 34px);
+.project-desc {
+  font-size: 14.5px;
   color: var(--cream-dim);
-  opacity: 0.5;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  flex-shrink: 0;
+  line-height: 1.65;
 }
 
-.card-details {
+.project-stack {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 18px;
-  width: 100%;
-  color: var(--cream-dim);
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-.gallery-preview {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
   margin-top: 8px;
 }
 
-.gallery-preview img {
-  height: 120px;
+.tech-pill {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(20, 232, 160, 0.07);
+  border: 1px solid rgba(20, 232, 160, 0.15);
+  color: var(--cream-dim);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+}
+
+/* RIGHT: Proof */
+.wc-proof {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.proof-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.proof-highlight {
+  font-size: 12.5px;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--emerald);
+  background: rgba(20, 232, 160, 0.08);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(20, 232, 160, 0.18);
+  line-height: 1.4;
+}
+
+.case-study-link {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: var(--cream);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.case-study-link:hover {
+  color: var(--emerald);
+}
+
+.case-study-link .arrow {
+  transition: transform 0.2s ease;
+}
+
+.case-study-link:hover .arrow {
+  transform: translate(3px, -3px);
+}
+
+.proof-preview {
+  position: relative;
   width: 100%;
-  object-fit: cover;
-  border-radius: 12px;
+  border-radius: 16px;
+  overflow: hidden;
   border: 1px solid var(--line);
+}
+
+.proof-preview img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.work-card:hover .proof-preview img {
+  transform: scale(1.03);
 }
 
 .work-card[hidden] {
   display: none;
 }
 
-@media (max-width: 720px) {
-  .work {
-    padding-top: 6vh;
-  }
-
-  .work-description {
-    margin-bottom: 30px;
-  }
-
-  .work-filters {
-    margin-bottom: 42px;
-  }
-
-  .work-filter {
-    padding: 10px 14px;
-  }
-
+@media (max-width: 900px) {
   .work-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .proof-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
-  }
-
-  .wc-left,
-  .wc-meta {
-    max-width: 100%;
-  }
-
-  .gallery-preview {
-    grid-template-columns: 1fr;
   }
 }

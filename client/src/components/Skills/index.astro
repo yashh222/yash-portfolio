@@ -1,42 +1,86 @@
 ---
 import "./styles.css";
 
-const skillGroups = [
+const skillCategories = [
   {
-    name: "Frontend",
-    items: ["Astro", "React", "TypeScript", "Tailwind", "HTML/CSS"],
+    title: "AI & Agentic Systems",
+    icon: "🤖",
+    description: "Autonomous agents, LLM apps & RAG pipelines",
+    skills: [
+      "Python",
+      "LangGraph",
+      "LangChain",
+      "CrewAI",
+      "MCP Protocol",
+      "RAG Pipelines",
+      "Vector DBs (Chroma)",
+      "LLM APIs (Claude, OpenAI)",
+      "Agentic Tooling",
+    ],
   },
   {
-    name: "Backend",
-    items: ["Node.js", "Express", "FastAPI", "REST APIs", "WebSockets"],
+    title: "Full-Stack Engineering",
+    icon: "🌐",
+    description: "Modern web frontends, backend APIs & WebSockets",
+    skills: [
+      "TypeScript",
+      "JavaScript",
+      "React.js",
+      "Node.js",
+      "FastAPI",
+      "Express.js",
+      "Tailwind CSS",
+      "WebSockets",
+      "Vite",
+    ],
   },
   {
-    name: "AI",
-    items: ["LangGraph", "RAG", "LLM Ops", "Prompt Design", "Agent Workflows"],
+    title: "Cloud & DevOps",
+    icon: "☁️",
+    description: "Containerization, CI/CD pipelines & cloud hosting",
+    skills: [
+      "Docker",
+      "AWS",
+      "GitHub Actions",
+      "Nginx",
+      "Vercel",
+      "Render",
+      "Git & GitHub",
+    ],
   },
   {
-    name: "Cloud",
-    items: ["Vercel", "AWS", "Docker", "CI/CD", "Serverless"],
-  },
-  {
-    name: "Databases",
-    items: ["PostgreSQL", "Supabase", "Redis", "Vector DB", "Schema Design"],
-  },
-  {
-    name: "Tools",
-    items: ["Git", "Figma", "Postman", "Cursor", "Notion"],
+    title: "Databases & Data",
+    icon: "📊",
+    description: "Relational & NoSQL databases, analytics & automation",
+    skills: [
+      "PostgreSQL",
+      "MongoDB",
+      "Supabase",
+      "n8n Workflows",
+      "Pandas & NumPy",
+      "Scikit-learn",
+      "Twilio API",
+    ],
   },
 ];
 ---
 <section class="skills" id="skills" data-reveal>
-  <p class="mono eyebrow">Skill Map</p>
+  <p class="mono eyebrow">Tech Stack</p>
   <h2 class="display">Stack I use to ship</h2>
   <div class="skill-grid">
-    {skillGroups.map((group) => (
+    {skillCategories.map((category) => (
       <div class="skill-card">
-        <h3>{group.name}</h3>
-        <ul>
-          {group.items.map((item) => <li>{item}</li>)}
+        <div class="card-header">
+          <span class="category-icon">{category.icon}</span>
+          <div>
+            <h3>{category.title}</h3>
+            <p class="category-desc">{category.description}</p>
+          </div>
+        </div>
+        <ul class="skills-list">
+          {category.skills.map((skill) => (
+            <li class="skill-pill">{skill}</li>
+          ))}
         </ul>
       </div>
     ))}
